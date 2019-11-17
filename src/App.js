@@ -7,12 +7,14 @@ import AddCustomer from "./containers/addCustomer";
 import HeroService from "./containers/heroService";
 import SmallBox from "./components/smallBox";
 import Customer from "./models/customer";
+import Confirmation from "./containers/confirmation";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       activateForm: true, //  handle openning pages(customer or hero)
+      openConfirmPage: false, // handle openning the confirm page.
       customer: new Customer(),
       squad: null,
       heroes: 0, // keep all quantities of the selected heroes
@@ -49,14 +51,19 @@ export default class App extends Component {
     this.setState({ customer });
   }
 
+  // after check customer's availability, move to the next page.
   handleConfirm() {
-    console.log("confirmed", this.state.squad.members);
+    // open the confirm page if a customer ia available.
+    if (this.state.customer.getName()) this.setState({ openConfirmPage: true });
+    // open the customer form to get a customer's information.
+    else this.setState({ activateForm: !this.state.activateForm });
   }
+
   render() {
     return (
       <div className="App">
         <NavBar />
-        {this.state.activateForm ? (
+        {this.state.activateForm && !this.state.openConfirmPage ? (
           <AddCustomer
             customer={this.state.customer}
             updateCustomer={e => this.updateCustomer(e)}
@@ -64,7 +71,7 @@ export default class App extends Component {
               this.setState({ activateForm: !this.state.activateForm })
             }
           />
-        ) :  (
+        ) : !this.state.openConfirmPage && (
           <HeroService
             squad={this.state.squad}
             heroes={this.state.heroes}
@@ -76,19 +83,27 @@ export default class App extends Component {
             }
           />
         )}
-        {!this.state.activateForm ? (
+        {!this.state.activateForm && !this.state.openConfirmPage ? (
           <SmallBox
             title="Customer"
             handleActivation={() =>
               this.setState({ activateForm: !this.state.activateForm })
             }
-          /> 
-        ) : (
+          />
+        ) : !this.state.openConfirmPage && (
           <SmallBox
             title="Hero Service"
             handleActivation={() =>
               this.setState({ activateForm: !this.state.activateForm })
             }
+          />
+        )}
+        {this.state.openConfirmPage && (
+          <Confirmation
+            squad={this.state.squad}
+            customer={this.state.customer}
+            heroes={this.state.heroes}
+            powers={this.state.powers}
           />
         )}
       </div>
