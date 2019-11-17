@@ -1,0 +1,47 @@
+.squad-header {
+  width: 70%;
+  margin: auto;
+  margin-top: 50px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.heroes {
+  width: 70%;
+  margin: auto;
+  margin-top: 50px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.heroes-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 8px;
+  padding: 0.75rem;
+  font-size: 1.2rem;
+}
+
+.hero div {
+  margin-bottom: 3px;
+}
+
+.hero input {
+  width: 25%;
+}
+
+.summary {
+  padding-top: 0.5rem;
+  background: cornsilk;
+}
+
+.summary span {
+  margin-left: 1.5rem;
+}
+
+.summary button {
+  font-size: 1rem;
+  padding: 0.25rem 2rem;
+  border-radius: 5px;
+  background: rgb(167, 245, 11);
+}
