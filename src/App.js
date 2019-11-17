@@ -4,20 +4,33 @@ import './app.css';
 import NavBar from "./components/navbar";
 import AddCustomer from "./containers/addCustomer";
 import SmallBox from "./components/smallBox";
+import Customer from "./models/customer";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activateForm: true //  handle openning pages(customer or hero)
+      activateForm: true, //  handle openning pages(customer or hero)
+      customer: new Customer()
     }
   }
 
+  updateCustomer(customer) {
+    this.setState({ customer });
+  }
+
   render() {
+    console.log(this.state);
     return (
       <div className="App">
         <NavBar />
-        <AddCustomer />
+        <AddCustomer
+          customer={this.state.customer}
+          updateCustomer={e => this.updateCustomer(e)}
+          handleActivation={() =>
+            this.setState({ activateForm: !this.state.activateForm })
+          }
+        />
         {!this.state.activateForm ? (
           <SmallBox
             title="Customer"
