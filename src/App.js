@@ -25,12 +25,34 @@ export default class App extends Component {
     getSquad().then(res => this.setState({ squad: res }));
   }
 
+  // data = { index, value }
+  // index : point the hero whose quantity has been changed.
+  // value : contain new quantity
+  updateSquad(data) {
+    const squad = this.state.squad;
+    // calculate the change of the quantiries (compare current and new values.)
+    const diffQty = data.value - squad.members[data.index].quantity;
+    // update the member's quantity with the new value.
+    squad.members[data.index].quantity = data.value;
+
+    // update total heroes and powers of all selected.
+    let heroes = this.state.heroes;
+    let powers = this.state.powers;
+    heroes += diffQty;
+    powers += squad.members[data.index].powers.length * diffQty;
+
+    // update the state.
+    this.setState({ squad, heroes, powers });
+  }
+
   updateCustomer(customer) {
     this.setState({ customer });
   }
 
+  handleConfirm() {
+    console.log("confirmed", this.state.squad.members);
+  }
   render() {
-    console.log(this.state);
     return (
       <div className="App">
         <NavBar />
