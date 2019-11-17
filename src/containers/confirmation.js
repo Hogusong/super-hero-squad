@@ -6,12 +6,46 @@ export default class Confirmation extends Component {
     super(props);
     this.state = {
       members: [...this.props.squad.members],
+      searchKey: "",
+      jsonFile: ""
     };
     this.renderPowers = this.renderPowers.bind(this);
   }
 
+  // search dynamically with each key input
+  searchPowers(searchKey) {
+    searchKey = searchKey.trim().toLowerCase();
+    this.setState({ searchKey });
+    // create a empty members array to push the search result.
+    const members = [];
+    this.props.squad.members.forEach(hero => {
+      for (let p of hero.powers) {
+        // if any power contains the search key, push this hero to the members
+        if (p.toLowerCase().includes(searchKey)) {
+          members.push(hero);
+          break;
+        }
+      }
+    });
+    // reset members with the search result
+    this.setState({ members: [...members] });
+  }
+
   onSubmit() {
-    console.log('Submitted...');
+    // clear the jsonFile if it's not empty, otherwise generate and display it.
+    if (this.state.jsonFile) this.setState({ jsonFile: "" });
+    else {
+      const customer = {
+        name: this.props.customer.getName(),
+        phone: this.props.customer.getPhone(),
+        email: this.props.customer.getEmail(),
+        zipCode: this.props.customer.getZipCode()
+      };
+      // generate a json file
+      const jsonFile = JSON.stringify({ customer, squad: this.props.squad });
+      // set the json file in to the state to display.
+      this.setState({ jsonFile });
+    }
   }
 
   // render a hero's all powers
@@ -57,6 +91,13 @@ export default class Confirmation extends Component {
             <h1>Squad Name : {this.props.squad.squadName}</h1>
             <h2>Hometown: {this.props.squad.homeTown}</h2>
             <p>Secret Base : {this.props.squad.secretBase}</p>
+            <label>Search Powers</label>
+            <input
+              type="text"
+              value={this.state.searchKey}
+              onChange={e => this.searchPowers(e.target.value)}
+            />
+            <span onClick={() => this.searchPowers("")}>X</span>
           </div>
         </div>
         <hr />
@@ -79,6 +120,8 @@ export default class Confirmation extends Component {
             </div>
           </div>
         </div>
+        <hr />
+        <div className="json-file">{this.state.jsonFile}</div>
       </div>
     );
   }
