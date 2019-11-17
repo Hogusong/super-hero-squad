@@ -35,3 +35,22 @@ input {
 span {
   color: red;
 }
+
+@media (max-width: 640px) {
+  .customer {
+    width: 80%;
+  }
+}
+
+@media (max-width: 500px) {
+  .customer {
+    width: 90%;
+  }
+}
+
+@media (max-width: 420px) {
+  input {
+    width: 10rem;
+    font-size: 0.8rem;
+  }
+}

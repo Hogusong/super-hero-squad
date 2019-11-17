@@ -15,3 +15,16 @@
   border-radius: 5px;
   background-color: rgb(167, 245, 11);
 }
+
+@media (max-width: 500px) {
+  .small-box {
+    width: 70%;
+  }
+}
+
+@media (max-width: 420px) {
+  .small-box button {
+    width: 70px;
+    margin-left: 1rem;
+  }
+}

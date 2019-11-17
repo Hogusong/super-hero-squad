@@ -1,15 +1,9 @@
 nav {
+  display: flex;
+  justify-content: space-between;
   margin: auto;
   padding: 1px 2rem;
   height: 70px;
   background-color: azure;
-  border-bottom: 1px solid black;
-}
-
-#left {
-  float: left;
-}
-
-#right {
-  float: right;
+  border-bottom: 1px solid #333;
 }

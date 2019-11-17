@@ -55,3 +55,37 @@
   border-radius: 5px;
   background: rgb(167, 245, 11);
 }
+
+@media (max-width: 960px) {
+  .all-heroes-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .confirm-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .confirm-header h2 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .all-heroes-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .confirm-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .confirm-header h2 {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .all-heroes-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

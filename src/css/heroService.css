@@ -45,3 +45,54 @@
   border-radius: 5px;
   background: rgb(167, 245, 11);
 }
+
+@media (max-width: 800px) {
+  .squad-header {
+    width: 80%;
+  }
+
+  .heroes {
+    width: 80%;
+  }
+}
+
+@media (max-width: 720px) {
+  .squad-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .squad-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .heroes-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .summary button {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .squad-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .squad-header h2 {
+    font-size: 1rem;
+  }
+
+  .heroes-list {
+    font-size: 14px;
+  }
+
+  .hero input {
+    font-size: 14px;
+    padding: 0 5px;
+  }
+
+  .summary button {
+    padding: 0.25rem 1.25rem;
+  }
+}
