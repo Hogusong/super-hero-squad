@@ -1,0 +1,37 @@
+.customer {
+  width: 70%;
+  margin: auto;
+  margin-top: 100px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+input[type="submit"] {
+  width: 8rem;
+  margin: 1.25rem;
+  border-radius: 5px;
+  background-color: bisque;
+}
+
+.errMessage {
+  color: red;
+  font-size: 10px;
+  margin-top: -10px;
+  padding: 0;
+}
+
+.input-label {
+  display: inline-flex;
+  width: 5rem;
+}
+
+input {
+  width: 15rem;
+  font-size: 1rem;
+  padding: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+span {
+  color: red;
+}

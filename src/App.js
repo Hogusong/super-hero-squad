@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import './app.css';
 import NavBar from "./components/navbar";
+import AddCustomer from "./containers/addCustomer";
 
 export default class App extends Component {
 
@@ -9,6 +10,7 @@ export default class App extends Component {
     return (
       <div className="App">
         <NavBar />
+        <AddCustomer />
       </div>
     );
   }
